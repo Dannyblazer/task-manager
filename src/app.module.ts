@@ -12,8 +12,8 @@ import { EventsModule } from './events/events.module';
     type: 'postgres',
     host: 'localhost',
     port: 5432,
-    password: 'pass123',
-    username: 'taskit',
+    password: secretpass, // remember to set environ
+    username: environusername, // This too
     entities: [],
     database: 'task_db',
     synchronize: true,
