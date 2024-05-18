@@ -1,6 +1,7 @@
 
 import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { CreateUserDto } from '../tasks/dto/create-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +14,7 @@ export class AuthController {
   }
 
   @Post('register')
-  async register(@Body('username') username: string, @Body('password') password: string): Promise<void> {
-    await this.authService.register(username, password);
+  async register(@Body() createUserDto: CreateUserDto): Promise<void> {
+    await this.authService.register(createUserDto.username, createUserDto.password);
   }
 }
