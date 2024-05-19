@@ -1,3 +1,4 @@
+// Import necessary modules and decorators from NestJS and TypeORM
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -13,29 +14,31 @@ import { DatabaseTestService } from './database-test.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
+      // ConfigModule for environment variables
+      isGlobal: true, // Make ConfigModule global
     }),
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
+      // Configure TypeORM module asynchronously
+      imports: [ConfigModule], // Import ConfigModule
       useFactory: async (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
-        entities: [Task, User],
-        synchronize: true,
+        // Factory function for database configuration
+        type: 'postgres', // Database type
+        host: configService.get<string>('DB_HOST'), // Database host
+        port: configService.get<number>('DB_PORT'), // Database port
+        username: configService.get<string>('DB_USERNAME'), // Database username
+        password: configService.get<string>('DB_PASSWORD'), // Database password
+        database: configService.get<string>('DB_NAME'), // Database name
+        entities: [Task, User], // Entities to be used
+        synchronize: true, // Auto-sync entities with database schema (not recommended for production)
       }),
-      inject: [ConfigService],
+      inject: [ConfigService], // Inject ConfigService
     }),
-    TypeOrmModule.forFeature([Task]),
-    TasksModule,
-    AuthModule,
-    UsersModule,
-    EventsModule,
+    TypeOrmModule.forFeature([Task]), // Register Task entity with TypeORM
+    TasksModule, // Import TasksModule
+    AuthModule, // Import AuthModule
+    UsersModule, // Import UsersModule
+    EventsModule, // Import EventsModule
   ],
-  providers: [DatabaseTestService, EventsGateway],
+  providers: [DatabaseTestService, EventsGateway], // Register providers
 })
 export class AppModule {}
-
