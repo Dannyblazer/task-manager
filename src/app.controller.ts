@@ -1,12 +1,13 @@
+// Import necessary decorators from NestJS
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller() // Marks this class as a NestJS controller
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) {} // Injects AppService
 
-  @Get()
+  @Get() // Maps HTTP GET requests to this method
   getHello(): string {
-    return this.appService.getHello();
+    return this.appService.getHello(); // Calls the getHello method of AppService
   }
 }
