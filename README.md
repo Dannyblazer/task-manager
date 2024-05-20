@@ -11,7 +11,7 @@
 
 ## Description
 
-This NestJS application offers a powerful backend API with key features like user authentication, user management, and task management. It uses PostgreSQL to store data and provides real-time updates for task creation using WebSocket. The app also includes a Swagger-powered API documentation page, making it easy to explore and interact with the available endpoints.
+This NestJS application offers a powerful backend API with key features like user authentication, user management, and task management. It uses PostgreSQL to store data and provides real-time updates for task creation using WebSocket(Socket.io). The app also includes a Swagger-powered API documentation page, making it easy to explore and interact with the available endpoints.
 
 
 ## Installation
