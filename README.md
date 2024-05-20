@@ -42,6 +42,8 @@ DB_NAME=database name
 JWT_SECRET=your_jwt_secret
 ```
 Swagger API docs at ```localhost:3000/api```
+
+Authentication is based on JWT Authorization: (Bearer Token)
 ## Test
 
 ```bash
